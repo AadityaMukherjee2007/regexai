@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: regexai
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn regexai.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GROQ_API_KEY
+        sync: false
+    staticPublishPath: staticfiles

@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("generate/", views.generate_regex, name="generate"),
+    path("support/", views.support, name="support")
 ]

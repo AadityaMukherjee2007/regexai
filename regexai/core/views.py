@@ -1,4 +1,4 @@
-from django import forms
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.shortcuts import render
 from decouple import config
@@ -10,16 +10,22 @@ testing = True
 def index(request):
     return render(request, "core/index.html")
 
+def support(request):
+    return render(request, "core/support.html")
+
+@csrf_exempt
 def generate_regex(request):
     client = Groq(
         api_key=config("GROQ_API_KEY"),
     )
 
     if request.method == "POST":
-        data = json.loads(request.body)
-        prompt = data.get("prompt", "")
-
-    if request.method == "GET":
+        try:
+            data = json.loads(request.body)
+            prompt = data.get("prompt", "")
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+    else:
         prompt = request.GET.get("prompt")
 
     if not prompt:
@@ -62,4 +68,3 @@ def generate_regex(request):
             status=500
         )
 
-    
