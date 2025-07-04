@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = document.querySelector("#output").textContent;
         navigator.clipboard.writeText(text)
         .then(() => {
-            this.innerHTML = '<span class="text-green-600">Copied!</span>';
             this.disabled = true;
+            this.innerHTML = '<span class="text-green-600">Copied!</span>';
 
             setTimeout(() => {
                 this.innerHTML = "Copy";

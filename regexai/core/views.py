@@ -3,22 +3,27 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from decouple import config
 from groq import Groq
-import json
+import json, razorpay
 
 testing = False
+
+#RAZORPAY_KEY_ID = config("RAZORPAY_KEY_ID")
+#RAZORPAY_KEY_SECRET = config("RAZORPAY_KEY_SECRET")
 
 def index(request):
     return render(request, "core/index.html")
 
+
 def support(request):
-    return render(request, "core/support.html")
+    amts = [49, 99, 149, 199, 299]  # Suggested amounts in INR
+    return render(request, "core/support.html", {
+        "amts": amts
+        }
+    )
 
 @csrf_exempt
 def generate_regex(request):
-    client = Groq(
-        api_key=config("GROQ_API_KEY"),
-    )
-
+    client = Groq(api_key=config("GROQ_API_KEY"))
     if request.method == "POST":
         try:
             data = json.loads(request.body)

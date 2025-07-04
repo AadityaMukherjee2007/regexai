@@ -1,6 +1,29 @@
 {% extends 'core/layout.html' %}
-
 {% load static %}
-{% block head %}<link rel="icon" type="image/x-icon" href="{% static 'images/coffee.png' %}">{% endblock %}
+
+{% block head %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/coffee.png' %}">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="{% static 'script/support.js' %}" defer></script>
+{% endblock %}
+
 {% block title %}Support Me{% endblock %}
 
+{% block body %}
+    <div class="bg-gray-100 min-h-screen flex flex-col items-center justify-center text-gray-800 px-4">
+        <h1 class="text-3xl font-bold mb-6 text-center">Buy Me a Coffee ☕</h1>
+
+        <div class="grid grid-cols-3 sm:grid-cols-5 gap-4">
+            {% for amt in amts %}
+                <button
+                    type="button"
+                    class="donate-btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg shadow text-center"
+                    data-amount="{{ amt }}">
+                    ₹{{ amt }}
+                </button>
+            {% endfor %}
+        </div>
+
+        <p class="text-sm text-gray-500 mt-6">100% of the amount goes to support this project ❤️</p>
+    </div>
+{% endblock %}

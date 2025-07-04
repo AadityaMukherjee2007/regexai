@@ -4,7 +4,6 @@
         {% load static %}
         {% block head %}{% endblock %}
         <link href="{% static 'css/output.css' %}" rel="stylesheet">
-        <script src="{% static 'script/script.js' %}"></script>
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
@@ -12,10 +11,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16 items-center">
                     <div class="text-xl font-semibold text-indigo-600">
-                        ⚡ Regex Generator
+                       <a href="{% url 'index' %}">⚡ Regex Generator</a>
                     </div>
                     <div>
-                        <a href="{% url 'index' %}"
+                        <a href="{% url 'support' %}"
                         class="inline-flex items-center bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded transition duration-300">
                             ☕ Buy Me a Coffee
                         </a>
@@ -24,5 +23,6 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
+        <script src="{% static 'script/script.js' %}"></script>
     </body>
 </html>
