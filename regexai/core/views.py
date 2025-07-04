@@ -5,7 +5,7 @@ from decouple import config
 from groq import Groq
 import json
 
-testing = True
+testing = False
 
 def index(request):
     return render(request, "core/index.html")
