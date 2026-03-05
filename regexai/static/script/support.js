@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const amount = parseInt(button.dataset.amount) * 100; // Convert ₹ to paise
 
             const options = {
-                key: "rzp_live_Tal9iimMEYBftX", // Replace with your Razorpay API Key
+                key: "rzp_live_SNXgdL6Z5OkmEA", // Replace with your Razorpay API Key
                 amount: amount,
                 currency: "INR",
                 name: "Buy Me a Coffee",
